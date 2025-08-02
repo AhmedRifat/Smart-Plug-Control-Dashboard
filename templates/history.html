@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Energy Usage History{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-title">Select Date</div>
+            <form method="GET" action="{{ url_for('history') }}">
+                <input 
+                    id="datepicker"
+                    name="date" 
+                    class="styled-date-picker" 
+                    placeholder="Select a date" 
+                    required 
+                    value="{{ selected_date or '' }}"
+                    readonly
+                >
+                <button type="submit" class="btn-on" style="margin-top: 10px">Show</button>
+            </form>
+        </div>
+
+        {% if selected_date and total_consumption is not none %}
+        <div class="stat-card">
+            <div class="stat-title">Total Consumption</div>
+            <div class="stat-value">{{ "%.4f"|format(total_consumption) }}</div>
+            <div class="stat-change">kWh</div>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if selected_date %}
+        <h3>Data for {{ selected_date }}</h3>
+
+        {% if times %}
+        <div class="charts-container">
+            <canvas id="powerChart"></canvas>
+            <canvas id="voltageChart"></canvas>
+            <canvas id="currentChart"></canvas>
+        </div>
+        {% else %}
+            <div class="no-data">No data found for this date.</div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    flatpickr("#datepicker", {
+        dateFormat: "Y-m-d",
+        maxDate: "today",
+        allowInput: false,
+        clickOpens: true,
+        onReady: function() {
+            this.calendarContainer.style.zIndex = "9999";
+        }
+    });
+});
+</script>
+{% if selected_date and times %}
+<script>
+const labels = {{ times | tojson }};
+const powers = {{ powers | tojson }};
+const volts = {{ volts | tojson }};
+const currents = {{ currents | tojson }};
+
+const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2,
+    scales: {
+        y: { beginAtZero: true },
+        x: { title: { display: true, text: 'Time' } }
+    },
+    plugins: {
+        legend: { display: true, position: 'top' },
+        tooltip: { mode: 'index', intersect: false }
+    },
+    interaction: { mode: 'nearest', intersect: false }
+};
+
+new Chart(document.getElementById('powerChart').getContext('2d'), {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Power (W)',
+            data: powers,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderWidth: 2,
+            tension: 0.1,
+            fill: true
+        }]
+    },
+    options: chartOptions
+});
+
+new Chart(document.getElementById('voltageChart').getContext('2d'), {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Voltage (V)',
+            data: volts,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderWidth: 2,
+            tension: 0.1,
+            fill: true
+        }]
+    },
+    options: chartOptions
+});
+
+new Chart(document.getElementById('currentChart').getContext('2d'), {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Current (A)',
+            data: currents,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderWidth: 2,
+            tension: 0.1,
+            fill: true
+        }]
+    },
+    options: chartOptions
+});
+</script>
+{% endif %}
+{% endblock %}

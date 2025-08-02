@@ -1,0 +1,487 @@
+{% extends "base.html" %}
+
+{% block title %}User Manual{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="control-panel">
+        <h2>Smart Plug Control System User Manual</h2>
+        <button id="downloadManual" class="btn-on" style="margin-bottom: 20px">Download Manual as PDF</button>
+    </div>
+
+    <div class="stat-card" style="margin-bottom: 20px; text-align: left; padding: 30px;">
+        <h2 style="text-align: center; margin-bottom: 30px; color: #2196F3;">Smart Plug Control Guide</h2>
+        
+        <div style="margin-bottom: 40px;">
+            <h3><span style="color: #2196F3;">1.</span> Dashboard Overview</h3>
+            <p>The dashboard is your main control center for monitoring and managing your smart plug.</p>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h4>Device Status</h4>
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <div style="width: 20px; height: 20px; background: #4CAF50; border-radius: 50%; margin-right: 10px;"></div>
+                            <span>ONLINE - Device is on and working</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <div style="width: 20px; height: 20px; background: #FFC107; border-radius: 50%; margin-right: 10px;"></div>
+                            <span>STANDBY - Device is off but connected</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <div style="width: 20px; height: 20px; background: #F44336; border-radius: 50%; margin-right: 10px;"></div>
+                            <span>OFFLINE - Device not connected</span>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 20px; height: 20px; background: #2196F3; border-radius: 50%; margin-right: 10px;"></div>
+                            <span>PROCESSING - Action in progress</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <h4>Live Measurements</h4>
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div style="margin-bottom: 10px;">
+                            <span style="font-weight: bold; color: rgba(75, 192, 192, 1);">Power:</span> 
+                            <span>120.5 Watts (Current usage)</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <span style="font-weight: bold; color: #2196F3;">Voltage:</span> 
+                            <span>230.4 Volts (Home electrical pressure)</span>
+                        </div>
+                        <div>
+                            <span style="font-weight: bold; color: rgba(255, 99, 132, 1);">Current:</span> 
+                            <span>0.523 Amps (Electricity flow)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>Control Buttons</h4>
+            <div style="text-align: center; margin: 20px 0;">
+                <button class="btn-on" style="display: inline-block; margin: 0 10px; padding: 10px 20px;">Turn ON</button>
+                <button class="btn-off" style="display: inline-block; margin: 0 10px; padding: 10px 20px;">Turn OFF</button>
+            </div>
+            <p>Simply click these buttons to control your smart plug. The button will appear pressed when active.</p>
+        </div>
+        
+        <div style="margin-bottom: 40px; border-top: 1px solid #eee; padding-top: 30px;">
+            <h3><span style="color: #2196F3;">2.</span> Understanding the Charts</h3>
+            <p>The charts visualize how your energy usage changes over time.</p>
+            
+            <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 20px 0; text-align: center;">
+                <img src="{{ url_for('static', filename='graph.png') }}" alt="Power Chart" style="max-width: 100%; height: auto; border-radius: 4px;" />
+            </div>
+
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1; min-width: 200px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h4>X-Axis (Bottom)</h4>
+                        <p>Shows the <strong>time</strong> when measurements were recorded</p>
+                        <p style="font-size: 12px; color: #666;">Example: 8:00:00 AM to 4:00:10 PM</p>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h4>Y-Axis (Left Side)</h4>
+                        <p>Shows the <strong>measurement values</strong></p>
+                        <p style="font-size: 12px; color: #666;">Example: 0W to 1200W for power</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>The line graph helps you identify patterns - higher peaks mean more energy was being used at that time.</p>
+        </div>
+        
+        <div style="margin-bottom: 40px; border-top: 1px solid #eee; padding-top: 30px;">
+            <h3><span style="color: #2196F3;">3.</span> Viewing Historical Data</h3>
+            <p>Review your past energy consumption through the History page.</p>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h4>Selecting a Date</h4>
+                        <div style="border: 1px solid #ddd; padding: 10px; border-radius: 4px; margin: 10px 0; display: inline-block;">
+                            <div style="display: flex; align-items: center;">
+                                <span style="margin-right: 10px;">📅</span>
+                                <span>2025-07-22</span>
+                            </div>
+                        </div>
+                        <p>Click the calendar icon, choose a date, then click "Show" to view that day's data.</p>
+                    </div>
+                </div>
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h4>Total Consumption</h4>
+                        <div style="font-size: 24px; font-weight: bold; color: #ff5722; margin: 10px 0;">2.456 kWh</div>
+                        <p>This shows the total electricity used that day in kilowatt-hours (kWh).</p>
+                        <p style="font-size: 12px; color: #666;">1 kWh = Running a 1000W device for 1 hour</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>After selecting a date, you'll see the same charts as the dashboard but for past data.</p>
+        </div>
+        
+        <div style="margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 30px;">
+            <h3><span style="color: #2196F3;">4.</span> Troubleshooting & Safety</h3>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h4>Common Issues</h4>
+                        <ul style="padding-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Device Offline:</strong><br>Check if the plug is powered and your Wi-Fi is working</li>
+                            <li style="margin-bottom: 8px;"><strong>No Data:</strong><br>The plug might have been unplugged during that time</li>
+                            <li><strong>Buttons Not Working:</strong><br>Refresh the page and try again</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h4>Safety Tips</h4>
+                        <ul style="padding-left: 20px;">
+                            <li style="margin-bottom: 8px;">Check your plug's maximum rating before connecting devices</li>
+                            <li style="margin-bottom: 8px;">Keep away from water and high humidity areas</li>
+                            <li style="margin-bottom: 8px;">Ensure proper ventilation around the plug</li>
+                            <li>Unplug if you notice unusual heat or smells</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('downloadManual').addEventListener('click', function() {
+    // Set loading state
+    const btn = this;
+    const originalText = btn.textContent;
+    btn.textContent = 'Generating PDF...';
+    btn.disabled = true;
+
+    // Load jsPDF library
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+
+    script.onload = function() {
+        try {
+            const { jsPDF } = window.jspdf;
+
+            // Create new PDF document
+            const doc = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // ===== Document Settings =====
+            const colors = {
+                primary: [33, 150, 243],
+                green: [76, 175, 80],
+                yellow: [255, 193, 7],
+                red: [244, 67, 54],
+                teal: [75, 192, 192],
+                gray: [200, 200, 200],
+                dark: [50, 50, 50],
+                lal: [255, 87, 34]
+            };
+
+            const fonts = {
+                title: 20,
+                heading: 16,
+                subheading: 14,
+                body: 12,
+                small: 10
+            };
+
+            const margins = {
+                left: 15,
+                right: 15,
+                top: 20,
+                bottom: 20
+            };
+
+            let yPos = margins.top;
+
+            // ===== Cover Page =====
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(fonts.title);
+            doc.setTextColor(...colors.primary);
+            doc.text('Smart Plug Control System', 105, yPos, { align: 'center' });
+            yPos += 10;
+            doc.text('User Manual', 105, yPos, { align: 'center' });
+            yPos += 20;
+
+            doc.setFontSize(fonts.body);
+            doc.setTextColor(...colors.gray);
+            doc.text('Version 1.0', 105, yPos, { align: 'center' });
+            yPos += 5;
+            doc.text(new Date().toLocaleDateString(), 105, yPos, { align: 'center' });
+
+            // ===== Content Pages =====
+            doc.addPage();
+            yPos = margins.top;
+
+            // Section 1: Dashboard Overview
+            doc.setFontSize(fonts.heading);
+            doc.setTextColor(...colors.primary);
+            doc.text('1. Dashboard Overview', margins.left, yPos);
+            yPos += 10;
+
+            doc.setFontSize(fonts.body);
+            doc.setTextColor(...colors.dark);
+            doc.text('The dashboard provides real-time monitoring and control of your smart plug:', margins.left, yPos);
+            yPos += 10;
+
+            // Device Status
+            doc.setFontSize(fonts.subheading);
+            doc.setTextColor(...colors.primary);
+            doc.text('Device Status Indicators', margins.left, yPos);
+            yPos += 8;
+
+            const statusIndicators = [
+                { color: colors.green, text: 'ONLINE - Device is on and working' },
+                { color: colors.yellow, text: 'STANDBY - Device is off but connected' },
+                { color: colors.red, text: 'OFFLINE - Device not connected' },
+                { color: colors.primary, text: 'PROCESSING - Action in progress' }
+            ];
+
+            statusIndicators.forEach(item => {
+                doc.setFillColor(...item.color);
+                doc.circle(margins.left + 2, yPos - 2, 2, 'F');
+                doc.setTextColor(...colors.dark);
+                doc.text(item.text, margins.left + 7, yPos);
+                yPos += 7;
+            });
+            yPos += 5;
+
+            // Live Measurements
+            doc.setFontSize(fonts.subheading);
+            doc.setTextColor(...colors.primary);
+            doc.text('Live Measurements', margins.left, yPos);
+            yPos += 8;
+
+            const measurements = [
+                { color: colors.teal, label: 'Power:', value: '    Current energy usage in Watts' },
+                { color: colors.primary, label: 'Voltage:', value: '    Electrical pressure in Volts' },
+                { color: colors.red, label: 'Current:', value: '    Electricity flow in Amperes' }
+            ];
+
+            measurements.forEach(item => {
+                doc.setTextColor(...item.color);
+                doc.text(item.label, margins.left, yPos);
+                doc.setTextColor(...colors.dark);
+                doc.text(item.value, margins.left + 15, yPos);
+                yPos += 7;
+            });
+            yPos += 10;
+
+            // Check for page break before next section
+            if (yPos > 200) {
+                doc.addPage();
+                yPos = margins.top;
+            }
+
+            // Section 2: Understanding Charts
+            doc.setFontSize(fonts.heading);
+            doc.setTextColor(...colors.primary);
+            doc.text('2. Understanding the Charts', margins.left, yPos);
+            yPos += 10;
+
+            doc.setFontSize(fonts.body);
+            doc.setTextColor(...colors.dark);
+            doc.text('The charts visualize how your energy usage changes over time:', margins.left, yPos);
+            yPos += 10;
+
+            // Load the graph image without await
+            const imgUrl = '{{ url_for("static", filename="graph.png") }}';
+
+            fetch(imgUrl)
+                .then(res => res.blob())
+                .then(blob => new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.readAsDataURL(blob);
+                }))
+                .then(imageData => {
+                    // Add image to PDF
+                    doc.addImage(imageData, 'PNG', margins.left, yPos, 180, 90);
+                    yPos += 95;
+
+                    // Add X-Axis and Y-Axis Information
+                    doc.setFontSize(fonts.subheading);
+                    doc.setTextColor(...colors.primary);
+                    doc.text('Axis Labels', margins.left, yPos);
+                    yPos += 8;
+
+                    doc.setFontSize(fonts.body);
+                    doc.setTextColor(...colors.dark);
+                    doc.text('• X-Axis: Time (e.g., 8:00:00 AM to 4:00:10 PM)', margins.left + 5, yPos);
+                    yPos += 7;
+                    doc.text('• Y-Axis: Measurement values (e.g., 0W to 1200W for power)', margins.left + 5, yPos);
+                    yPos += 12;
+
+                    // Section 3: Viewing Historical Data
+                    if (yPos > 200) {
+                        doc.addPage();
+                        yPos = margins.top;
+                    }
+
+                    doc.setFontSize(fonts.heading);
+                    doc.setTextColor(...colors.primary);
+                    doc.text('3. Viewing Historical Data', margins.left, yPos);
+                    yPos += 10;
+
+                    doc.setFontSize(fonts.body);
+                    doc.setTextColor(...colors.dark);
+                    doc.text('Review past energy consumption through the History page:', margins.left, yPos);
+                    yPos += 10;
+
+                    // Date Picker
+                    doc.setFontSize(fonts.subheading);
+                    doc.setTextColor(...colors.primary);
+                    doc.text('Selecting a Date', margins.left, yPos);
+                    yPos += 8;
+
+                    doc.setFontSize(fonts.body);
+                    doc.setTextColor(...colors.dark);
+                    doc.text('1. Click the calendar icon', margins.left + 5, yPos);
+                    yPos += 7;
+                    doc.text('2. Choose a date (e.g., 2025-07-22)', margins.left + 5, yPos);
+                    yPos += 7;
+                    doc.text('3. Click "Show" to view data', margins.left + 5, yPos);
+                    yPos += 12;
+
+                    // Total Consumption
+                    doc.setFontSize(fonts.subheading);
+                    doc.setTextColor(...colors.primary);
+                    doc.text('Total Consumption', margins.left, yPos);
+                    yPos += 8;
+
+                    doc.setFontSize(fonts.body);
+                    doc.setTextColor(...colors.dark);
+                    doc.text('Displays energy used in kilowatt-hours (kWh):', margins.left + 5, yPos);
+                    yPos += 7;
+
+                    doc.setFontSize(16);
+                    doc.setTextColor(...colors.lal);
+                    doc.text('2.456 kWh', margins.left + 10, yPos);
+                    yPos += 7;
+
+                    doc.setFontSize(fonts.small);
+                    doc.setTextColor(...colors.gray);
+                    doc.text('(1 kWh = Running a 1000W device for 1 hour)', margins.left + 10, yPos);
+                    yPos += 15;
+
+                    // Section 4: Troubleshooting & Safety
+                    if (yPos > 250) {
+                        doc.addPage();
+                        yPos = margins.top;
+                    }
+
+                    doc.setFontSize(fonts.heading);
+                    doc.setTextColor(...colors.primary);
+                    doc.text('4. Troubleshooting & Safety', margins.left, yPos);
+                    yPos += 10;
+
+                    // Troubleshooting
+                    doc.setFontSize(fonts.subheading);
+                    doc.setTextColor(...colors.primary);
+                    doc.text('Troubleshooting', margins.left, yPos);
+                    yPos += 8;
+
+                    const troubleshooting = [
+                        'Device Offline: Check power and Wi-Fi connection',
+                        'No Data: Device may have been unplugged',
+                        'Buttons Not Working: Refresh the page and try again'
+                    ];
+
+                    doc.setFontSize(fonts.body);
+                    doc.setTextColor(...colors.dark);
+                    troubleshooting.forEach(item => {
+                        doc.text('• ' + item, margins.left + 5, yPos);
+                        yPos += 7;
+                    });
+                    yPos += 10;
+
+                    // Safety Information
+                    doc.setFontSize(fonts.subheading);
+                    doc.setTextColor(...colors.primary);
+                    doc.text('Safety Information', margins.left, yPos);
+                    yPos += 8;
+
+                    const safetyTips = [
+                        'Do not exceed device power rating',
+                        'Keep away from water and moisture',
+                        'Ensure proper ventilation',
+                        'Unplug if device feels hot or smells unusual'
+                    ];
+
+                    doc.setFontSize(fonts.body);
+                    doc.setTextColor(...colors.dark);
+                    safetyTips.forEach(item => {
+                        doc.text('• ' + item, margins.left + 5, yPos);
+                        yPos += 7;
+                    });
+
+                    // Add page numbers
+                    const pageCount = doc.internal.getNumberOfPages();
+                    for (let i = 1; i <= pageCount; i++) {
+                        doc.setPage(i);
+                        doc.setFontSize(fonts.small);
+                        doc.setTextColor(...colors.gray);
+                        doc.text(`Page ${i} of ${pageCount}`, 200, 287, null, null, 'right');
+                    }
+
+                    // Save the PDF
+                    doc.save('SmartPlug_User_Manual.pdf');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                })
+                .catch(err => {
+                    console.error("Failed to load graph image:", err);
+                    doc.setTextColor(...colors.red);
+                    doc.text("⚠️ Failed to load graph image.", margins.left, yPos);
+                    yPos += 10;
+
+                    // Still add page numbers and save PDF
+                    const pageCount = doc.internal.getNumberOfPages();
+                    for (let i = 1; i <= pageCount; i++) {
+                        doc.setPage(i);
+                        doc.setFontSize(fonts.small);
+                        doc.setTextColor(...colors.gray);
+                        doc.text(`Page ${i} of ${pageCount}`, 200, 287, null, null, 'right');
+                    }
+
+                    doc.save('SmartPlug_User_Manual.pdf');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                });
+        } catch (error) {
+            console.error('PDF generation error:', error);
+            alert('Failed to generate PDF. Please try again.');
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }
+    };
+
+    script.onerror = function() {
+        console.error('Failed to load jsPDF library');
+        alert('Failed to load PDF generator. Please check your internet connection.');
+        btn.textContent = originalText;
+        btn.disabled = false;
+    };
+
+    document.head.appendChild(script);
+});
+</script>
+
+{% endblock %}

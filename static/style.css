@@ -1,0 +1,349 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, #2196F3 0%, #0d47a1 100%);
+    color: white;
+    padding: 25px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dashboard Layout */
+.dashboard {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Stats Container - Horizontal Layout */
+.stats-container {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* Device Status Card */
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-top: 4px solid #0fdcef;
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Add to style.css */
+.stat-card:nth-child(2) {
+    border-top-color: #0fdcef;
+}
+
+.stat-card:nth-child(2) .stat-value {
+    color: #ff5722;
+}
+
+/* Metrics Row - Horizontal Layout */
+.metrics-row {
+    display: flex;
+    flex: 3;
+    gap: 25px;
+    min-width: 0;
+}
+
+.metric-card {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    min-width: 0;
+    text-align: center;
+    border-top: 4px solid #4CAF50;
+}
+
+.metric-card:nth-child(1) { border-top-color: rgba(75, 192, 192, 1); }
+.metric-card:nth-child(2) { border-top-color: #2196F3; }
+.metric-card:nth-child(3) { border-top-color: rgba(255, 99, 132, 1); }
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Card Content Styles */
+.stat-title {
+    font-size: 15px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 15px 0;
+    line-height: 1;
+}
+
+.stat-change {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.metric-label {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.metric-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 10px 0;
+    line-height: 1;
+}
+
+.metric-unit {
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Status Colors */
+.status-online {
+    color: #4CAF50;
+}
+
+.status-standby {
+    color: #FFC107;
+}
+
+.status-offline {
+    color: #F44336;
+}
+
+.status-processing {
+    color: #2196F3;
+}
+
+.status-error {
+    color: #F44336;
+}
+
+/* Control Panel */
+.control-panel {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    text-align: center;
+    border-top: 4px solid #607D8B;
+}
+
+.btn-on, .btn-off {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0 15px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+}
+
+.btn-on {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    color: white;
+}
+
+.btn-on:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #66BB6A 0%, #388E3C 100%);
+}
+
+.btn-off {
+    background: linear-gradient(135deg, #F44336 0%, #C62828 100%);
+    color: white;
+}
+
+.btn-off:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #EF5350 0%, #D32F2F 100%);
+}
+
+/* Color for power */
+#powerValue {
+    color: rgba(75, 192, 192, 1);     
+}
+
+/* Color for voltage */
+#voltageValue {
+    color: #2196F3;           /* blue */
+}
+
+/* Color for current */
+#currentValue {
+    color: rgba(255, 99, 132, 1);           /* green */
+}
+
+/* Charts Container */
+.charts-container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    position: relative;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto 30px auto;
+    width: 100% !important;
+    max-width: 1800px;
+    height: auto !important;
+    aspect-ratio: 2 / 1;
+}
+
+/* Date Picker */
+.styled-date-picker {
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.styled-date-picker:focus {
+    border-color: #218838;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.4);
+}
+
+footer {
+    text-align: center !important;
+    color: #777;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1000px) {
+    .stats-container {
+        flex-direction: column;
+    }
+    
+    .metrics-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .metric-card {
+        min-width: calc(50% - 13px);
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+    
+    .metrics-row {
+        flex-direction: column;
+    }
+    
+    .metric-card {
+        min-width: 100%;
+    }
+    
+    .control-panel {
+        padding: 20px 15px;
+    }
+    
+    .btn-on, .btn-off {
+        margin: 0 10px 10px;
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header {
+        padding: 15px 0;
+        margin-bottom: 20px;
+    }
+    
+    .stat-card, .metric-card {
+        padding: 15px;
+    }
+    
+    .stat-value, .metric-value {
+        font-size: 28px;
+    }
+}
