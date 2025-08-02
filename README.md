@@ -1,4 +1,4 @@
-**Smart Plug Control System**
+# Smart Plug Control System #
 
 A comprehensive web application for monitoring and controlling Tuya-based smart plugs with energy usage tracking and historical data visualization.
 
